@@ -51,8 +51,7 @@ newBedMine <- newBedMine[, c("V1", "V2", "V3", "V4", "V5", "a1PProdRatio", "V6",
 # Visualising the data frame with the appended column
 newBedMine
 
-----
-# Creating a new data frame newBedMineFinal
+# Creating a new data frame newBedMineFinal containing filtered data and the ratio "ATAC-seq induced" vs "uninduced peak heights" column
 newBedMineFinal <- data.frame(peaks=integer(n), startPeakPos=integer(n), endPeakPos=integer(n), a1Patac=integer(n), a1Natac=integer(n), a1PProdRatio=integer(n), 
 chip1=integer(n), chip2=integer(n));
 
@@ -68,10 +67,10 @@ newBedMineFinal
 and is a measure of the change in chromatin accessibility, with Ascl1(induced) versus without Ascl1(uninduced).
 newBedMineFinal$ratio <- signif(newBedMineFinal$a1PProdRatio / newBedMineFinal$V5,digits = 3)
 
-# Visualising the "ratio of change in chromatin accessibility" column
+# Visualising the ratio "ATAC-seq induced" vs "uninduced peak heights" column
 newBedMineFinal$ratio
 
-# Appending the "ratio of change in chromatin accessibility" column to the dataframe
+# Appending the ratio "ATAC-seq induced" vs "uninduced peak heights" column to the dataframe
 newBedMineFinal <- newBedMineFinal[, c("V1", "V2", "V3", "V4", "V5", "a1PProdRatio", "ratio", "V6", "V7")]
 
 # Visualising the updated data frame
