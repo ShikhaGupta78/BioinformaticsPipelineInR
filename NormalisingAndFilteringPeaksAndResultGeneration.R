@@ -1,16 +1,16 @@
 setwd("/pathToBedFile/BedFile")
 
-# read bed file as a data frame
+# Read bed file as a data frame
 bed <- read.table("final_BED.txt",header = FALSE, sep="\t",stringsAsFactors=FALSE, quote="")
 
-# create new data frame to store accessible chromosome coordinates, ATAC and ChIP-seq peak heights 
+# Create new data frame to store accessible chromosome coordinates and ATAC and ChIP-seq peak heights 
 newBedMine <- data.frame(peaks=integer(n), startPeakPos=integer(n), endPeakPos=integer(n), a1Patac=integer(n), a1Natac=integer(n), chip1=integer(n), chip2=integer(n));
 
-# eliminating rows from initial data frame where peak height (number of reads) of either ATAC-seq Ascl1 induced or uninduced are less than or equal to 0 and putting remaining rows 
-# into newly created data frame newBedMine
+# Eliminating rows from initial data frame where peak height (number of reads) of either ATAC-seq Ascl1 induced or uninduced are less than or equal to 0 and 
+# putting remaining rows into newly created data frame newBedMine
 newBedMine <- bed[bed$V4>0&bed$V5>0,]
 
-# visualizing the new data frame
+# Visualizing the new data frame
 newBedMine
 
 # Following steps are to normalize the total number of reads in the two columns ‘ATAC-seq peaks with Ascl1 induction’ and ‘ATAC-seq peaks without Ascl1 induction’
@@ -48,7 +48,7 @@ newBedMine$a1PProdRatio
 # Appending new column to the newBedMine data frame
 newBedMine <- newBedMine[, c("V1", "V2", "V3", "V4", "V5", "a1PProdRatio", "V6", "V7)]
 
-# Visualising the data frame with the appended column
+# Visualising the data frame with the appended column a1PProdRatio
 newBedMine
 
 # Creating a new data frame newBedMineFinal containing filtered data and the ratio "ATAC-seq induced" vs "uninduced peak heights" column
@@ -64,7 +64,7 @@ newBedMineFinal <- newBedMine[newBedMine$V5>10&newBedMine$a1PProdRatio>10,]
 newBedMineFinal
 
 # Determing the ratio "ATAC-seq induced" vs "uninduced peak heights" (number of reads), for each peak upto 3 decimal places. This ratio is put into a new column
-and is a measure of the change in chromatin accessibility, with Ascl1(induced) versus without Ascl1(uninduced).
+# and is a measure of the change in chromatin accessibility, with Ascl1(induced) versus without Ascl1(uninduced).
 newBedMineFinal$ratio <- signif(newBedMineFinal$a1PProdRatio / newBedMineFinal$V5,digits = 3)
 
 # Visualising the ratio "ATAC-seq induced" vs "uninduced peak heights" column
@@ -103,7 +103,7 @@ newBedMineChipEliminated <- newBedMine_sorted_ratio_desc_filtered[newBedMine_sor
 newBedMineChipEliminated
 
 
-# Generation of subset of only the first 100 peaks for barplot generation
+# Generating subset of only the first 100 peaks for barplot generation
 newBedMineChipEliminated_subset<- newBedMineChipEliminated[1:100,]
 newBedMineChipEliminated_subset
 write.table(newBedMineChipEliminated_subset, file="readCountSubset.txt", quote=FALSE, sep="\t", row.names = FALSE, col.names = FALSE )
