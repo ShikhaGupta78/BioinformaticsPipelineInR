@@ -1,42 +1,43 @@
 setwd("/pathToBedFile/BedFile")
 
-# Read bed file as a data frame
+# Read BED file as a data frame
 bed <- read.table("final_BED.txt",header = FALSE, sep="\t",stringsAsFactors=FALSE, quote="")
 
-# Create new data frame to store accessible chromosome coordinates and ATAC and ChIP-seq peak heights 
+# Create new data frame to store accessible chromosome coordinates, and ATAC and ChIP-seq peak heights 
 newBedMine <- data.frame(peaks=integer(n), startPeakPos=integer(n), endPeakPos=integer(n), a1Patac=integer(n), a1Natac=integer(n), chip1=integer(n), chip2=integer(n));
 
-# Eliminating rows from initial data frame where peak height (number of reads) of either ATAC-seq Ascl1 induced or uninduced are less than or equal to 0 and 
+# Eliminating rows from initial data frame where peak height (number of reads) of either ATAC-seq Ascl1 induced or uninduced are less than or equal to 0, and 
 # putting remaining rows into newly created data frame newBedMine
 newBedMine <- bed[bed$V4>0&bed$V5>0,]
 
 # Visualizing the new data frame
 newBedMine
 
-# Following steps are to normalize the total number of reads in the two columns ‘ATAC-seq peaks with Ascl1 induction’ and ‘ATAC-seq peaks without Ascl1 induction’
 
-# Determining the sum of peak heights (sum of number of reads) for ‘ATAC-seq peaks with Ascl1 induction’, for each accessible chromatin region
+# Following steps are to normalize the total number of reads in the two columns "ATAC-seq peaks with Ascl1 induction" and "ATAC-seq peaks without Ascl1 induction"
+
+# Determining the sum of peak heights (sum of number of reads) for "ATAC-seq peaks with Ascl1 induction", for each accessible chromatin region
 a1PatacSum<- sum(newBedMine$V4)
 
-# Visualising the sum of peak heights for ‘ATAC-seq peaks with Ascl1 induction’
+# Visualising the sum of peak heights for "ATAC-seq peaks with Ascl1 induction"
 a1PatacSum
 
-# Determining the sum of peak heights (sum of number of reads) for ‘ATAC-seq peaks without Ascl1 induction’, for each accessible chromatin region
+# Determining the sum of peak heights (sum of number of reads) for "ATAC-seq peaks without Ascl1 induction", for each accessible chromatin region
 a1NatacSum<- sum(newBedMine$V5)
 
-# Visualising the sum of peak heights for ‘ATAC-seq peaks without Ascl1 induction’
+# Visualising the sum of peak heights for "ATAC-seq peaks without Ascl1 induction"
 a1NatacSum
 
-# Determining ratio of ‘total number of reads for ATAC-seq peaks without Ascl1 induction’ by ‘ total number of reads for ATAC-seq peaks with Ascl1 induction’. 
+# Determining ratio of "total number of reads for ATAC-seq peaks without Ascl1 induction" by "total number of reads for ATAC-seq peaks with Ascl1 induction". 
 # This ratio will be used for the normalisation.
 AtacPeakRatio <- a1NatacSum/a1PatacSum
 
-# Visualising the normalisation ratio obtained.
+# Visualising the normalisation ratio obtained
 AtacPeakRatio
 
-# Creating new column for ‘ATAC-seq peaks without Ascl1 induction’ multiplied by ‘normalisation ratio’ since the 
-# ‘total number of reads for ATAC-seq peaks without Ascl1 induction’ was greater than
-# ‘total number of reads for ATAC-seq peaks with Ascl1 induction’ by a factor of ratio. And rounding the values obtained in this new column.
+# Creating new column for "ATAC-seq peaks without Ascl1 induction" multiplied by "normalisation ratio" since the 
+# "total number of reads for ATAC-seq peaks without Ascl1 induction" was greater than
+# "total number of reads for ATAC-seq peaks with Ascl1 induction" by a factor of ratio. And rounding the values obtained in this new column.
 newBedMine$a1PProdRatio <- round(newBedMine$V4*AtacPeakRatio)
 
 # Typecasting values in the new column as an integer
@@ -163,7 +164,7 @@ write.table(newBedMineChipEliminated_subset_enrichr, file="BEDEnrichr.txt", quot
 FALSE, col.names = FALSE )
 
 
-# Command to write final BED file having all peaks sorted in descending order of ratio into a txt file
+# Command to write final BED file having all peaks sorted in descending order of ratio, into a txt file
 write.table(newBedMineChipEliminated, file="BEDFoldIncrease.txt", quote=FALSE, sep="\t", row.names = FALSE,
 col.names = FALSE )
 
