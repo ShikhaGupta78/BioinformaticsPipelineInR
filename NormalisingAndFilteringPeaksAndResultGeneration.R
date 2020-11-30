@@ -46,7 +46,7 @@ newBedMine$a1PProdRatio <- intéger(newBedMine$a1PProdRatio)
 newBedMine$a1PProdRatio
 
 # Appending new column to the newBedMine data frame
-newBedMine <- newBedMine[, c("V1", "V2", "V3", "V4", "V5", "a1PProdRatio", "V6", "V7)]
+newBedMine <- newBedMine[, c("V1", "V2", "V3", "V4", "V5", "a1PProdRatio", "V6", "V7")]
 
 # Visualising the data frame with the appended column a1PProdRatio
 newBedMine
@@ -56,7 +56,7 @@ newBedMineFinal <- data.frame(peaks=integer(n), startPeakPos=integer(n), endPeak
 chip1=integer(n), chip2=integer(n));
 
 
-# Extracting only those accessible chromatin regions (peaks) where ‘ATAC-seq peaks with Ascl1 induction’ and ‘ATAC-seq peaks without Ascl1 induction’ 
+# Extracting only those accessible chromatin regions (peaks) where "ATAC-seq peaks with Ascl1 induction" and "ATAC-seq peaks without Ascl1 induction" 
 # are greater than 10 as a filter
 newBedMineFinal <- newBedMine[newBedMine$V5>10&newBedMine$a1PProdRatio>10,]
 
@@ -64,7 +64,7 @@ newBedMineFinal <- newBedMine[newBedMine$V5>10&newBedMine$a1PProdRatio>10,]
 newBedMineFinal
 
 # Determing the ratio "ATAC-seq induced" vs "uninduced peak heights" (number of reads), for each peak upto 3 decimal places. This ratio is put into a new column
-# and is a measure of the change in chromatin accessibility, with Ascl1(induced) versus without Ascl1(uninduced).
+# and is a measure of the change in chromatin accessibility, with Ascl1(induced) versus without Ascl1(uninduced)
 newBedMineFinal$ratio <- signif(newBedMineFinal$a1PProdRatio / newBedMineFinal$V5,digits = 3)
 
 # Visualising the ratio "ATAC-seq induced" vs "uninduced peak heights" column
