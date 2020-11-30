@@ -13,7 +13,6 @@ newBedMine <- bed[bed$V4>0&bed$V5>0,]
 # Visualizing the new data frame
 newBedMine
 
-
 # Following steps are to normalize the total number of reads in the two columns "ATAC-seq peaks with Ascl1 induction" and "ATAC-seq peaks without Ascl1 induction"
 
 # Determining the sum of peak heights (sum of number of reads) for "ATAC-seq peaks with Ascl1 induction", for each accessible chromatin region
