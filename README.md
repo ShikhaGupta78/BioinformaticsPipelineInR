@@ -2,7 +2,7 @@
 Bioinformatic pipeline to investigate Ascl1 trancription factor dependent changes in chromatin accessibility and its correlates with Ascl1 binding, using R programming and analysis of high throughput next generation sequencing (NGS) ATAC-seq and ChIP-seq data.
 
 
-## SRA raw data file source
+## SRA raw data file source:
 Project: PRJNA382708; 
 GEO: GSE97715;
 [Project Link](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA382708)
