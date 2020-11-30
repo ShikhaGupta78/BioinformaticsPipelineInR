@@ -3,11 +3,11 @@ Bioinformatic pipeline to investigate Ascl1 trancription factor dependent change
 
 
 ## SRA raw data file source:
-Project: PRJNA382708; 
-GEO: GSE97715;
-[Project Link](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA382708)
-Publication Title: “Intrinsic DNA binding properties demonstrated for lineage-specifying basic helix-loop-helix transcription factors.”
-[Publication Link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5880239/)
+- Project: PRJNA382708
+- GEO: GSE97715
+- Project Link: (https://www.ncbi.nlm.nih.gov/bioproject/PRJNA382708)
+- Publication Title: “Intrinsic DNA binding properties demonstrated for lineage-specifying basic helix-loop-helix transcription factors.”
+- Publication Link: (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5880239/)
 
 ## ATAC seq data:
 Project: PRJNA382711
