@@ -1,3 +1,4 @@
+# Set working directory to directory containing the BED file 
 setwd("/pathToBedFile/BedFile")
 
 # Read the BED file as a data frame
