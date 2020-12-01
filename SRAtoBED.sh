@@ -4,7 +4,7 @@
 # BWA command to map the generated FastQ file to the reference genome, and index SAI file is generated as the output
 bwa aln -t 8 /media/lpmb3/iGenomes/Mus_musculus/UCSC/mm10/Sequence/BWAIndex/genome.fa /media/lpmb3/Shikha/SRA/$1.fastq > $1.sai
 
-# BWA command to finally generate the SAM file from the index SAI and FastQ files
+# BWA command to generate the SAM file from the index SAI and FastQ files
 bwa samse /media/lpmb3/iGenomes/Mus_musculus/UCSC/mm10/Sequence/BWAIndex/genome.fa $1.sai $1.fastq > $1.aln.sam
 
 # SAMtools command to convert SAM file format to binary version BAM file format
