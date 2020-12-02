@@ -1,4 +1,4 @@
-# Creation of FastQ file from SRA file, first parameter is the path of the fastq-dump and the second parameter is the location of the SRA file
+# Creation of FastQ file from SRA file, first parameter is the path of the fastq-dump utilities and the second parameter is the location of the SRA file
 /home/tools/sratoolkit.2.5.1-centos_linux64/bin/fastq-dump.2.5.1 /PathToSRA/FolderName/SRA/$1
 
 # BWA command to map the generated FastQ file to the reference genome, and index SAI file is generated as the output
